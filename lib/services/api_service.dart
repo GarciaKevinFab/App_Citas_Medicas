@@ -90,7 +90,7 @@ class ApiService {
 
   static Future markAppointmentAsAttended(String appointmentId) async {
     final response = await http.put(
-      Uri.parse('$apiUrl/api/appointments/$appointmentId'),
+      Uri.parse('$apiUrl/api/appointments/$appointmentId/attend'),
       headers: {"Authorization": "Bearer $token"},
     );
     if (response.statusCode != 200) {

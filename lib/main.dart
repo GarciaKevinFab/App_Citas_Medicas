@@ -5,6 +5,7 @@ import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/doctor/doctor_appointments_screen.dart';
 import 'screens/doctor/doctor_dashboard.dart';
+import 'screens/home_screen.dart';
 import 'screens/patient/patient_dashboard.dart';
 
 void main() {
@@ -17,11 +18,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Citas Médicas',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xFF4C8BF5), // Color azul suave para los botones
+        scaffoldBackgroundColor: Colors.white, // Fondo blanco
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+          bodyLarge: TextStyle(fontSize: 16, color: Colors.grey[800]),
+        ),
+        buttonTheme: ButtonThemeData(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Color(0xFF88C8FF)),
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) => HomeScreen(), // Pantalla de inicio
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
         '/patient_dashboard': (context) => PatientDashboard(),
@@ -30,37 +43,6 @@ class MyApp extends StatelessWidget {
         '/appointment_history': (context) => AppointmentHistoryScreen(),
         '/doctor_appointments': (context) => DoctorAppointmentsScreen(),
       },
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Citas Médicas'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
-              child: Text('Login'),
-            ),
-            SizedBox(height: 20), // Espacio entre los botones
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/register');
-              },
-              child: Text('Register'),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
